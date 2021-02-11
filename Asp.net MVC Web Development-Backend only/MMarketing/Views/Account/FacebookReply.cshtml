@@ -1,0 +1,64 @@
+﻿@using (Html.BeginForm("FacebookReply", "Account", FormMethod.Post))
+{
+    <br/>
+    <div class="container bg-white">
+        <p>
+            Enter your message here.
+        </p>
+       <div class="col-8">
+          @if ((ViewBag.PageIds as List<MMarketing.Helper.FacebookAccount>) != null)
+          {
+              foreach(var pageId in (ViewBag.PageIds as List<MMarketing.Helper.FacebookAccount>))
+              {
+                  @Html.RadioButton("pageId", pageId.id) @Html.Raw(" "+pageId.name+"-" +pageId.id)
+              }
+          }
+
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+
+                @Html.TextArea("message")
+                @Html.Hidden("access_token")
+
+            </div>
+            <div class="form-group">
+
+                <button type="submit" id="send" disabled>Send</button>
+            </div>
+        </div>
+        <div class="col-8">
+            <div id="loadpartial">
+                @Html.Partial("_FacebookPagePosts")
+            </div>
+        </div>
+  </div>
+}
+    @section Scripts{
+        
+        <script>
+
+            $(document).ready(function () {
+                $('#pageId').change(function () {
+                    var $radio = $(this);
+                    $('button[id="send"]').removeAttr('disabled');
+                    $.ajax({
+                        url: '@Url.Action("FacebookpagePost", "Account")',
+                        data: { pageId: $radio.val(), access_token: '@ViewBag.access_token' },
+                        type: 'GET',
+                        success: function ($data) {
+                            $("#loadpartial").html($data);
+                            $("#divLoading").hide();
+                        },
+                        failure: function ($data) {
+                            alert($data);
+                        }
+                    });
+                });
+            })
+        </script>
+        
+        
+    
+  
+}

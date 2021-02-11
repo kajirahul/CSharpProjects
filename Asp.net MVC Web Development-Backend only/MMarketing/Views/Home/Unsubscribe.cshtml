@@ -1,0 +1,59 @@
+﻿@model MMarketing.Models.MarketingViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Unsubscribe</title>
+    
+</head>
+<body>
+    <div>
+        <h4>MMarketing</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            
+            <dt>
+                @Html.DisplayNameFor(model => model.UserName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.UserName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.UserEmail)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.UserEmail)
+            </dd>
+            <dd> You have been successfully unsubscribed.
+            <div>
+            Unsubscribe options:
+
+                 <select id="UnSubscribe">
+                    <option value="Receive reminder to subscribe once a month">Recieve reminder to subscribe once a month</option>
+                    <option value="Receive Monthly Promotional emails">Receive Monthly promotional emails</option>
+                    <option value="Opt out of all the services">Opt out of all the services</option>
+
+
+                </select>
+            </div>
+                <p>Sorry to see you go. We will miss you!!</p>
+            </dd>
+              
+                
+               
+
+            
+    
+        </dl>
+    </div>
+</body>
+</html>

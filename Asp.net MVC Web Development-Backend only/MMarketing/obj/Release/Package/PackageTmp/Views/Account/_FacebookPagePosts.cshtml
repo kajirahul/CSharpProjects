@@ -1,0 +1,24 @@
+﻿@model IEnumerable<MMarketing.Helper.FacebookAccount>
+
+
+<table class="table table-striped">
+    <tr>
+        <th scope="col">No.</th>
+        <th scope="col">All the post of the page.</th>
+        <th scope="col"></th>
+    </tr>
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">
+                    @item.id
+                </th>
+                <td>
+                    @Html.Raw(item.message)
+                </td>
+            </tr>
+        }
+    }
+</table>
